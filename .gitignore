@@ -1,0 +1,8 @@
+# Folders
+build/
+dist/
+release/
+debug/
+
+# Files
+main

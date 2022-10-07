@@ -1,0 +1,20 @@
+
+#f main:int(argc:int, argv:[string]) =
+    const a:int = 4
+    let b:float = 5.0
+    var c:auto = a * b
+    var e:variant = c to int
+    var f = cast c int
+    c = a ^ 2
+    c = b ** a
+    var d:ptr to int -> a
+    echo "a =>" a
+    echo "dereferenced d =>" ~d
+    echo "iidir senden?"
+    echo $ add 3 5 | data:int
+    echo $ add 2 4 |> output.txt
+    %cat input.txt | data2:string
+    return a + b
+
+
+main

@@ -1,0 +1,110 @@
+/**
+ * #s = subroutine
+ * #p = procedure
+ * #f = function
+ * #read_file(filepath, content) =
+    subroutine read_file_into_content(filepath: string, content: ptr to string) = 
+        ct:ptr -> content
+        let size: size_t = ct.size
+        var fp:FILE ptr -> fopen(filepath, "r")
+        if !fp: fprintf("error", stderr); exit(1)
+        fgets(fp, ct)
+        fclose((fp) // also fine => fp.fclose
+        free(fp) // same as => fp.free
+**/
+
+// one line comment
+
+alias sub = subroutine
+alias func = function
+alias fn = function
+alias proc = procedure
+
+defer fp.close
+
+#macro read_file (filepath, content) =
+    subroutine read_file_into_content(filepath: string, content: ptr to string) = 
+        ct:ptr -> content
+        let size: size_t = ct.size
+        var fp:FILE ptr -> fopen(filepath, "r")
+        if !fp: fprintf("error", stderr); exit(1)
+        fgets(fp, ct)
+        fclose(fp) // also fine => fp.fclose
+        free(fp) // same as => fp.free
+
+#preprocess =
+    PI 3.14
+    ZART 5
+
+#define DAY_COUNT_IN_YEAR 365
+
+#f main(argc:int, argv:[string]): int =
+    echo "naber"
+    contents:auto = #read_file as [string]
+    return 0
+
+function get_this(): ?(string int) = 
+    return a is not None ? a : b
+
+fn get_ptr_to_int(): -> int =
+    i:ptr to int
+
+let rec sum = #f x:xs => x + f xs
+
+eager =
+    data: auto = get_data
+    fun: object = &sum
+
+/**
+ * take dicts, comprehensions from py
+ * get layziness and functional programming ideas from haskell (and ocaml)
+ * use memory stuff from c
+ * need to steal lot of ideas from d (uffi, classes, structs, unittest)
+ * copy string manipulation properties from perl
+ * macros like rust and d
+ * coroutines like go routines!
+**/
+
+/**
+ * important reserved keywords (as ideas)
+ * context (like globals in python)
+ * dir (same as python)
+ * typeof (like type in python)
+ * type (like type in nim or typedef in c)
+ * sizeof (same as c)
+ * standart stuff like function, for, if, else, elif, switch-case, continue, break
+ * const, let, var, type infer is ok but better to right types with ':' 
+ * defer (same as zig)
+ * comments like in c
+ * pointers => p: ptr to int -> an_integer
+ * echo to print stuff
+ * printf and fprintf for historical reasons
+ * print like python
+ * #println() like println! in Rust
+ * piping data like so: echo "deneme" | data:string
+                        run | data:int
+ * or to a file like so: echo "naber" |> $file_path
+                         echo "dur bi" |>> $file_path
+ * and, or, not instead of || && ! (this is mostly about syntax though)
+ * %cat file.txt | data:string
+ * calling functions
+    add 3 5
+    add(3, 5)
+    [3, 5].add
+ * sequences => sets, tuples, lists, arrays, vectors (or dataframes)
+ * private, protected, public like php
+ * interface, metaclasses
+ * mod, export, modules, import, from
+ * where syntax like haskell
+ * option type like rust
+ * use '?' to return options from funcs
+ * this and self keywords?
+ * id() like py
+ * None or null? or undefined? 
+ * is operator to check objects
+ * thread programming and asyncio, await
+ * ! to indicate importance or precedence
+ * debugging stuff
+ * ide ideas
+ * code map, memory map
+**/

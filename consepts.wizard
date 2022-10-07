@@ -1,0 +1,110 @@
+// This is comment
+
+/**
+ * *** Code composed from those 3 below ***
+ * sequence
+ * selection
+ * iteration
+**/
+
+#define PI 3.14
+
+#preprocess =
+    ADAM 32
+    KADIN 50
+
+#include <stdio.h>
+#include "mylib.h"
+
+import something
+from package import that
+
+
+mytable: table =
+    columns: ["name", "age"]
+    rows: [
+        ["ado", 34],
+        ["ozi", 22]
+    ]
+
+struct student =
+    name: str
+    age: int
+
+type stu = struct student
+
+typedef struct node =
+    val: null
+    left: node
+    right: node
+
+class animal = 
+    #f init(self, name, age) = standart
+    #f bark(self) = print "hav"
+        
+function get_or_die: ?<str, null>() =
+    return Option(some="some string", none=null)
+
+func create_struct: ptr to struct student(name: str, age: int) =
+    mystudent: ptr to struct student = malloc(sizeof struct student)
+    mystudent -> {name: name, age: age}
+
+#f main: int(argc: int, argv: [str]) =
+    /* ado: auto = create_struct("adnan", "30") */
+    /* ado: auto = create_struct "adnan" "30" */
+    create_struct "adnan" "30" | ado: auto
+    defer free ado
+    with ado as a:
+        print a.name a.age
+    dog: auto = new animal("daisy", 12)
+    /* dog: auto = animal.new("daisy", 12) */
+    dog.bark
+    print ADAM
+    const a:int = 4
+    var d:long
+    let b:float = 5.0
+    var c:auto = a * b
+    var x:ptr to int -> a
+    /* var x:ptr to int = &a */
+    let y -> b
+    let z:auto = &c
+    echo "a =>" a
+    echo "~x =>" ~x
+    echo "~z =>" deref z
+    echo "b = ${b}"
+    echo $ typeof b
+    echo $ sizeof z
+    echo $ addressof a
+    scanf "%d" &d
+    e:short <|
+    e |>
+    add 3 5 | data1:int
+    add 2 3 | add 7 | add 10 | data:int
+    block =
+        m:str <| %cat input.txt
+        n:float = 4.56
+    echo $ add 3 5 | data1: str
+    echo $ add 2 4 |> output.txt
+    %cat input.txt | data2: string
+    echo "deneme" | %tee output2.txt | data3: str
+    printf "Data3 %s " data3
+    let k = a to str
+    let l = data3 to list
+    echo "k =>" k
+    echo "l =>" l
+    sum $ take 3 [4, 7, 2, 99, 32] | echo
+    echo "Sum:: " $ sum $ take 3 [4, 7, 2, 99, 32]
+    for i in [2, 3, 5]:
+        print i
+    if a < b:
+        echo "1"
+    elif b < a:
+        echo "2"
+    else:
+        echo "="
+    return a + b
+
+
+main
+
+export animal
